@@ -1,1 +1,129 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectSphere - Better Than Facebook</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4267B2">
+    <style>
+        /* Basic styles to ensure UI is visible */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        logo {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .logo img {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .auth-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #1877f2;
+            color: white;
+            width: 100%;
+        }
+        
+        .auth-links {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .auth-links a {
+            color: #1877f2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .message {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="ConnectSphere Logo">
+            <h1>ConnectSphere</h1>
+        </div>
+        <!-- The rest of the UI will be generated dynamically -->
+    </div>
+
+    <!-- Load scripts in the correct order -->
+    <!-- Core utilities first -->
+    <script src="utils/logger.js"></script>
+    <script src="utils/router.js"></script>
+    
+    <!-- API service must be loaded before components -->
+    <script src="services/api.js"></script>
+    
+    <!-- Dynamic UI generator -->
+    <script src="dynamic_ui.js"></script>
+    
+    <!-- Components that depend on API service -->
+    <script src="components/auth.js"></script>
+    <script src="components/post.js"></script>
+    
+    <!-- Main application scripts -->
+    <script src="app.js"></script>
+    
+    <!-- Service worker registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+
+                   console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
